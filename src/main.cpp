@@ -32,11 +32,9 @@ int main()
 {
   uWS::Hub h;
 
+  // Initialize the pid variable.
   PID pid;
-  // TODO: Initialize the pid variable.
-  pid.Kp = 0.2;
-  pid.Ki = 0.004;
-  pid.Kd = 3.0;
+  pid.Init(0.2, 0.004, 3.0);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -63,13 +61,13 @@ int main()
 
           pid.UpdateError(cte);
 
-          std::cout << "Kp: " << pid.Kp << std::endl;
-          std::cout << "Ki: " << pid.Ki << std::endl;
-          std::cout << "Kd: " << pid.Kd << std::endl;
+          std::cout << "Kp: " << pid._Kp << std::endl;
+          std::cout << "Ki: " << pid._Ki << std::endl;
+          std::cout << "Kd: " << pid._Kd << std::endl;
           std::cout << "p_error: " << pid.p_error << std::endl;
           std::cout << "i_error: " << pid.i_error << std::endl;
           std::cout << "d_error: " << pid.d_error << std::endl;
-          steer_value = - pid.Kp * pid.p_error - pid.Ki * pid.i_error - pid.Kd * pid.d_error;
+          steer_value = - pid._Kp * pid.p_error - pid._Ki * pid.i_error - pid._Kd * pid.d_error;
 
           
           // DEBUG

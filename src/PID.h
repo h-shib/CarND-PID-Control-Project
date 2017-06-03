@@ -13,9 +13,19 @@ public:
   /*
   * Coefficients
   */ 
-  double Kp;
-  double Ki;
-  double Kd;
+  double _Kp;
+  double _Ki;
+  double _Kd;
+
+  /*
+  * Position Parameters
+  */
+  double _x_trajectory = 0;
+  double _y_trajectory = 0;
+  double _orientation = 0;
+  double _steering_noise = 0;
+  double _distance_noise = 0;
+  double _steering_drift = 0;
 
   /*
   * Constructor
