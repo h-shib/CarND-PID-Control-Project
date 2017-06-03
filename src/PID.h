@@ -18,6 +18,21 @@ public:
   double _Kd;
 
   /*
+  * Parameters for coefficients update
+  */
+  double _dKp;
+  double _dKi;
+  double _dKd;
+
+  double _update_threshold;
+  int _update_position = 0;
+  int    _n_step = 0;
+  bool   _is_first_loop = true;
+  double _best_error;
+  double _current_error;
+  double _total_error;
+
+  /*
   * Position Parameters
   */
   double _x_trajectory = 0;
@@ -51,6 +66,12 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
+  /*
+  * Update coefficients by twiddle algorithm
+  */
+  void UpdateCoefficients();
+
 };
 
 #endif /* PID_H */

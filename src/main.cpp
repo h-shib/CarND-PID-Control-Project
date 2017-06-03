@@ -67,8 +67,8 @@ int main()
           std::cout << "p_error: " << pid.p_error << std::endl;
           std::cout << "i_error: " << pid.i_error << std::endl;
           std::cout << "d_error: " << pid.d_error << std::endl;
-          steer_value = - pid._Kp * pid.p_error - pid._Ki * pid.i_error - pid._Kd * pid.d_error;
 
+          steer_value = pid.TotalError();
           
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
