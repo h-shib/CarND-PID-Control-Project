@@ -1,6 +1,28 @@
+# PID-Control
+
+Implemented PID-Control algorithm for self-driving-car simulator.
+[PID Controller wiki](https://en.wikipedia.org/wiki/PID_controller)
+
+## PID components
+P represents proportional gain.
+It produces an output value which is proportional to CTE(Cross Track Error).
+This term is effective to control steering angle to a certain extent, however, it also generates oscillation.
+
+I represents integral gain.
+The sum of the CTE over time which should be corrected previous time is multiplied by the integral gain and added to the output.
+
+D represents derivative gain.
+This is calculated by the slope of CTE over time and multiplying that rate of change by the derivative gain. This cuts oscillation and adds stability of the system.
+
+
+## How the final hyperparameters were chosen
+I used sample parameters to initialize Kp, Ki, Kd (0.2, 0.004, 3.0). Then, optimized it with Twiddle algorithm by UpdateCoefficients function.
+Finally, it automatically converged to (0.180001, 0.00439999, 2.70001).
+
+---
+
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
-
 ---
 
 ## Dependencies
