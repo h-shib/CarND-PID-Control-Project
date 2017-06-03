@@ -52,26 +52,19 @@ int main()
           double speed = std::stod(j[1]["speed"].get<std::string>());
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
-          /*
-          * TODO: Calcuate steering value here, remember the steering value is
-          * [-1, 1].
-          * NOTE: Feel free to play around with the throttle and speed. Maybe use
-          * another PID controller to control the speed!
-          */
 
+          // Calculate steering value
           pid.UpdateError(cte);
+          steer_value = pid.TotalError();
 
+          // DEBUG
+          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
           std::cout << "Kp: " << pid._Kp << std::endl;
           std::cout << "Ki: " << pid._Ki << std::endl;
           std::cout << "Kd: " << pid._Kd << std::endl;
           std::cout << "p_error: " << pid.p_error << std::endl;
           std::cout << "i_error: " << pid.i_error << std::endl;
           std::cout << "d_error: " << pid.d_error << std::endl;
-
-          steer_value = pid.TotalError();
-          
-          // DEBUG
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;

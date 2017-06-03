@@ -4,10 +4,6 @@
 
 using namespace std;
 
-/*
-* TODO: Complete the PID class.
-*/
-
 PID::PID() {
 	_x_trajectory = 0;
 	_y_trajectory = 0;
