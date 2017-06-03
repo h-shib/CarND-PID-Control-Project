@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "PID.h"
 
 using namespace std;
@@ -37,6 +38,12 @@ void PID::UpdateError(double cte) {
 
 	_total_error += cte*cte;
 	_n_step += 1;
+}
+
+double PID::UpdateThrottle(double steer_value) {
+
+	double throttle = 0.75 - fabs(steer_value)*1.75;
+	return throttle;
 }
 
 double PID::TotalError() {

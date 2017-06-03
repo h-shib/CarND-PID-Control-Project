@@ -72,6 +72,11 @@ public:
   */
   void UpdateCoefficients();
 
+  /*
+  * Update throttle based on steering angle
+  */
+  double UpdateThrottle(double steer_value);
+
 };
 
 #endif /* PID_H */
